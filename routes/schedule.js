@@ -65,7 +65,7 @@ router.get("/", async (req, res) => {
     if (scheduleRow.length > 0) {
       returnData.weight = scheduleRow[0].weight ? scheduleRow[0].weight : 0;
       returnData.fat = scheduleRow[0].fat ? scheduleRow[0].fat : 0;
-      returnData.log = scheduleRow[0].log ? scheduleRow[0].log : {};
+      returnData.log = scheduleRow[0].log ? JSON.parse(scheduleRow[0].log) : {};
       returnData.start_time = scheduleRow[0].start_time
         ? scheduleRow[0].start_time
         : "00:00:00";
@@ -204,7 +204,7 @@ router.post("/", async (req, res) => {
         userData.uid,
         scheduleWeight,
         scheduleFat,
-        saveLogData,
+        JSON.stringify(saveLogData),
         scheduleTimeStart,
         scheduleTimeEnd,
         scheduleDate,

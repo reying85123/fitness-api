@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
       [userData.uid]
     );
     let returnData = {};
-    if (logRow.length > 0) returnData = logRow[0].log;
+    if (logRow.length > 0) returnData = JSON.parse(logRow[0].log);
     res.status(200).send({
       success: true,
       message: "Get succeeded.",
@@ -129,7 +129,7 @@ router.post("/", async (req, res) => {
   try {
     const [logRow] = await conn.execute(
       "INSERT INTO training_log (user_id, log) VALUES (?, ?) ON DUPLICATE KEY UPDATE log = VALUES(log)",
-      [userData.uid, saveData]
+      [userData.uid, JSON.stringify(saveData)]
     );
 
     res.status(200).send({
