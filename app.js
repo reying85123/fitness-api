@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 const corsOptions = {
-  origin: ["http://localhost:8080"],
+  origin: JSON.parse(process.env.CORS_ORIGIN),
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   allowedHeaders: ["Content-Type", "Authorization"],
 };

@@ -127,7 +127,7 @@ router.post("/", async (req, res) => {
   });
 
   try {
-    const [goalRow] = await conn.execute(
+    const [logRow] = await conn.execute(
       "INSERT INTO training_log (user_id, log) VALUES (?, ?) ON DUPLICATE KEY UPDATE log = VALUES(log)",
       [userData.uid, saveData]
     );
